@@ -5,11 +5,11 @@ interface ToDo {
   id: number;
   title: string;
   description: string;
-  status: typeof status[number];
-  createdAt: Date,
-  finishedAt: Nullable<Date>,
-  willFinishAt: Date,
-};
+  status: (typeof status)[number];
+  createdAt: Date;
+  finishedAt: Nullable<Date>;
+  willFinishAt: Date;
+}
 
 const getDummyToDo = (overrideToDo: Partial<Omit<ToDo, 'id'>>): ToDo => {
   const defaultToDo: ToDo = {
@@ -21,7 +21,7 @@ const getDummyToDo = (overrideToDo: Partial<Omit<ToDo, 'id'>>): ToDo => {
     createdAt: new Date(),
     finishedAt: null,
     willFinishAt: new Date(),
-  }
+  };
   return {
     ...defaultToDo,
     ...overrideToDo,
@@ -30,10 +30,12 @@ const getDummyToDo = (overrideToDo: Partial<Omit<ToDo, 'id'>>): ToDo => {
 
 let dummyToDos: ToDo[] = [];
 for (let i = 0; i < 10; i++) {
-  dummyToDos.push(getDummyToDo({
-    title: `title ${i}`,
-    description: `description ${i}`,
-  }))
+  dummyToDos.push(
+    getDummyToDo({
+      title: `title ${i}`,
+      description: `description ${i}`,
+    }),
+  );
 }
 </script>
 
